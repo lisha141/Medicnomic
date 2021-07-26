@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicnomic | Official</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="bootstrap.min.css">
+    
+    <style>
+        form{
+            margin-top:200px;
+            margin-bottom:auto;
+        }
+        body{
+            background-color:whitesmoke;
+        }
+        .jumbotron {
+            height: 200px;
+        }
+        .badge{
+            color:whitesmoke;
+        }
+        .design{
+            background-color: white;
+            min-height: 500px;
+            border-radius: 10px;
+        }
+        .sticky-footer{
+            margin-top:30%;
+            background-color:dimgray;
+            color:whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light">
+        <a class="navbar-brand" href="#"><strong>Medicnomic</strong></a>
+        <div class="navbar-nav"><span class="badge badge-pill bg-info">CovidProducts</span></div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse pull-xs-right" id="collapse">
+        </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#1"><span><i class='fas fa-home'></i></span> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#2"><span><i class='fas fa-list-alt'></i></span> Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention.html"><span><i class='fas fa-globe'></i></span> Covid Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#3"><span><i class="fas fa-file"></i></span> About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#4"><span> | &nbsp<i class="fas fa-user"></i></span> Login</a>
+            </li>
+        </ul>
+
+    </nav>
+    
+    <div id="display"></div>
+
+    <footer class="container-fluid sticky-footer">
+        <br />
+        <p class="text-center py-2">Follow our socials </p>
+        <br />
+        <ul class="list-unstyled list-inline text-center">
+            <li class="list-inline-item">
+                <a class="btn-floating btn-fb mx-1">
+                    <i class="fab fa-facebook-f"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-tw mx-1">
+                    <i class="fab fa-twitter"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-gplus mx-1">
+                    <i class="fab fa-google-plus-g"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-li mx-1">
+                    <i class="fab fa-linkedin-in"> </i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="btn-floating btn-dribbble mx-1">
+                    <i class="fab fa-dribbble"> </i>
+                </a>
+            </li>
+        </ul>
+        <hr />
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:Medicnomic</div>
+    </footer>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var d = "home.html";
+            $("#display").load(d);
+            $("a").on('click', function () {
+                var c = $(this).attr('href');
+                switch (c) {
+                    case "#1":
+                        d = "home.html";
+                        break;
+                    case "#2":
+                        d = "categories.html";
+                        break;
+                    case "#3":
+                        d = "about.html";
+                        break;
+                    case "#4":
+                        d = "login.html";
+                        break;
+                }
+                $("#display").load(d);
+               
+            });
+        });
+    </script>
+</body>
+    </html>

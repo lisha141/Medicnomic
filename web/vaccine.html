@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link type="stylesheet" href="../source/bootstrap.min.css" />
+    
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style>
+        #map {
+            height: 70%;
+        }
+
+        html,
+        body {
+            height: 100%;
+           
+        }
+        #session {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #session td, #session th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #session tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #session tr:hover {
+                background-color: #ddd;
+            }
+
+            #session th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;
+            }
+            #lab{
+               font-size:25px;
+            }
+           #pin {
+            width: 80%;
+            color: black;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+        <div class="container shadow-lg design">
+            <br />
+            <br />
+            <h2 class="text-center">CHECK YOUR NEAREST VACCINATION CENTER & GET VACCINATED TODAY.</h2>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="pin" id="lab">Search By PIN:</label>
+                <input id="pin" type="number" name="pin" placeholder="Enter Area PIN" />
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <table id="session">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>CAPACITY</th>
+                        <th>VACCINE</th>
+                        <th>FREE/PAID</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button typeof="button" class="btn btn-info" id="searchvac">Search</button>
+        </div>
+    
+    <div id="map"></div>
+    <script src="../source/jquery-3.4.1.min.js"></script>
+    <script src="../source/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log("hello");
+        $('button').on('click', function () {
+            var pin = $("#pin").val();
+            if (pin == '' || pin == undefined) {
+                alert("Please enter pin code");
+                return;
+            }
+            var d = new Date();
+            d.setDate(new Date().getDate() + 1);
+            var dd = d.getDate();
+            var mm = d.getMonth() + 1;
+            var yy = d.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            var dat = dd + "-" + mm + "-" + yy;
+            console.log(dat);
+            $.get("https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=" + pin + "&date=" + dat, function (data, status) {
+                var result = [];
+                result = data.sessions;
+                console.log(result);
+                addMarker({
+                    lat: 23.2599,
+                    lng: 77.4126
+                });
+                if (result.length>0) {
+                    for (var i = 0; i < result.length; i++) {
+                        var resultdata = {}
+                        resultdata = result[i];
+                        console.log(resultdata);
+                        $('#session tbody').append('<tr class="child"><td>' + resultdata.name + '</td><td>' + resultdata.available_capacity + '</td><td>' + resultdata.vaccine + '</td><td>' + resultdata.fee_type);
+                        addMarker({
+                            lat: resultdata.lat,
+                            lng: resultdata.long
+                        });
+
+                    }
+                }
+                else {
+                    $('#session tbody').empty();
+                    alert("Sorry! No centers available.");
+                }
+            })
+        });
+
+});
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 23.2599, lng: 77.4126},
+            zoom: 8,
+        });
+    }
+    function addMarker(coords) {
+        var marker = new google.maps.Marker({
+            position: coords,
+            map: map,
+        });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCy1sdPQ6wzQ4PQ4xPKNpqJ8wSGAWTCQRY&callback=initMap&libraries=&v=weekly"
+            async></script>
+</body>
+</html>

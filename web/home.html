@@ -1,0 +1,119 @@
+﻿
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="jumbotron bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0)), url(https://cdn.hovia.com/app/uploads/Grey-and-Pink-Geometric-Triangle-Pattern-Wallpaper-Mural-Plain-820x532.jpg)">
+        <div class="container shadow-lg design">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+
+                    <form>
+                        <h4 class="text-center" style="color:black">
+                            <strong>
+                                Check prices of Health Care products all over the Web.
+                            </strong>
+                        </h4>
+                        <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                            <div class="input-group">
+                                <input type="search" placeholder="Search for products" aria-describedby="button-addon1" class="form-control border-0 bg-light" id="search_bar">
+                                <div class="input-group-append">
+                                    <button id="button-addon1" type="button" class="btn btn-link text-info"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("button").on("click", function () {
+                var x, y;
+                var s = $("#search_bar").val();
+                var f = s.toLowerCase();
+                switch (f) {
+                    case "N-95 mask":
+                    case "N-95":
+                    case "n-95":
+                    case "surgical mask":
+                    case "surgicalmask":
+                    case "masks":
+                    case "mask": {
+                        gotopage("page1");
+                        break;
+                    }
+                    case "shield":
+                    case "sheild":
+                    case "facesheilds":
+                    case "faceshields":
+                    case "faceshield":
+                    case "facesheild": {
+                        gotopage("page2");
+                        break;
+                    }
+                    case "sanitizer":
+                    case "sanitizers":
+                    case "hand sanitizer":
+                    case "handsanitizers":
+                    case "handsanitizer": {
+                        gotopage("page3");
+                        break;
+                    }
+                    case "temprature gun":
+                    case "infrared thermometer":
+                    case "thermometer":
+                    case "tempratureguns":
+                    case "tempraturegun": {
+                        gotopage("page4");
+                        break;
+                    }
+                    case "pulseoximeters":
+                    case "pulseoximeter": {
+                        gotopage("page5");
+                        break;
+                    }
+                    case "steamers":
+                    case "steamer": {
+                        gotopage("page6");
+                        break;
+                    }  
+                    case "hand wash":
+                    case "handwashes":
+                    case "handwash": {
+                        gotopage("page7");
+                        break;
+                    } 
+                    case "ppe kit":
+                    case "ppekit":
+                    case "gloves":
+                    case "glove":
+                    case "ppekitandgloves":
+                    case "ppekitandglove": {
+                        gotopage("page8");
+                        break;
+                    }
+                    default: {
+                        y = " <div class='text-center'><h1>Sorry,This product is not available right now.</h1></div>";
+                        $("#display").html(y);
+                        break;
+                    }
+
+                }
+                
+            });
+            
+        });
+        function gotopage(v) {
+            $("#display").load("./web/"+v+".html");
+        }
+        
+    </script>
+</body>
+</html>

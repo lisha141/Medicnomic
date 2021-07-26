@@ -1,0 +1,138 @@
+﻿
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .card-img-top {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+        }
+        .heads{
+            padding:50px;
+        }
+        .card {
+            width: 300px;
+            height: 90%;
+            border-radius: 10px;
+           
+        }
+        .card-title{
+           color:black;
+           
+        }
+        a:hover{
+            text-decoration-color:black;
+        }
+    </style>
+</head>
+<body>
+   
+        <div class="container shadow-lg design">
+            <h2 class="row text-center heads"><strong>Covid Oriented Products</strong></h2>
+            <div id="product">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-lg">
+                            <img class="card-img-top mx-auto" src="../images/product(8).jpg" alt="Mask">
+                            <div class="card-body">
+                                <a href="#" class="stretched-link" name="mask"><h4 class="card-title text-center">Masks</h4></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-lg">
+                            <img class="card-img-top mx-auto" src="../images/product(3).jpg" alt="Face Sheild">
+                            <div class="card-body">
+                                <a href="#" class="stretched-link" name="facesheild"><h4 class="card-title text-center">Face Shields</h4></a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-lg">
+                            <img class="card-img-top mx-auto" src="../images/product(6).jpg" alt="Card image">
+                            <div class="card-body">
+                                <a href="#" class="stretched-link" name="handsanitizer"><h4 class="card-title text-center">Hand Sanitizer</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-lg">
+                            <img class="card-img-top mx-auto" src="../images/product(5).jpg" alt="Card image">
+                            <div class="card-body">
+                                <a href="#" class="stretched-link" name="tempraturegun"><h4 class="card-title text-center">Temperature Gun</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-lg">
+                            <img class="card-img-top  mx-auto" src="../images/product(2).jpg" alt="Card image">
+                            <div class="card-body">
+                                <a href="#" class="stretched-link" name="pulseoximeter"><h4 class="card-title text-center">Pulse oximeter</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-lg">
+                            <img class="card-img-top  mx-auto" src="../images/product(4).jpg" alt="Card image">
+                            <div class="card-body">
+                                <a href="#" class="stretched-link" name="steamer"><h4 class="card-title text-center">Steamer</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-lg">
+                            <img class="card-img-top  mx-auto" src="../images/product(7).jpg" alt="Card image">
+                            <div class="card-body">
+                                <a href="#" class="stretched-link" name="handwash"><h4 class="card-title text-center">Hand Wash</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-lg">
+                            <img class="card-img-top  mx-auto" src="../images/product(1).jpg" alt="Card image">
+                            <div class="card-body">
+                                <a href="#" class="stretched-link" name="ppekitandgloves"><h4 class="card-title text-center">PPE kit and Gloves</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <br/>
+            </div>
+        </div>
+    <script>
+        $(document).ready(function () {
+            $("a.stretched-link").on('click', function () {
+                var d = $(this).attr("name");
+                var x ="web/categories/"+ d + ".html";
+                $("#product").load(x);
+                //console.log(d);
+            });
+                });
+    </script>
+</body>
+</html>

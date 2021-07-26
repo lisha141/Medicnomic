@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Medicnomic | HandWash</title>
+    <style>
+        .img-thumbnail:hover {
+            box-shadow: 0 0 2px 1px lightgrey;
+        }
+
+        .img-thumbnail {
+            width: 150px;
+            height: 150px;
+            padding: 10px;
+        }
+
+        .product:hover {
+            box-shadow: 3px 3px 3px 3px lightgrey;
+            border-radius: 10px;
+        }
+
+        .product {
+            margin-bottom: 15px;
+        }
+
+        .text {
+            margin: 20px;
+            flex: 1 1 0;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        a.text-center {
+            color: black;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        h5.text-muted {
+            font-size: 15px;
+        }
+        h5 {
+            display: inline;
+            margin-right: 4px;
+        }
+        a[id="amazon"], a[id="flipkart"], a[id="shopclues"] {
+            visibility: hidden;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row d-flex" id="#1">
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">HandWash</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body d-flex">
+                        <img style="max-height: 100%; max-width: 500px;" src="" alt="product_image" class="img-thumbnail" />
+                        <div style="margin-left:20px;">
+                            <h4 id="title">
+                            </h4>
+                            <h5 class="text-primary" id="amazon"></h5>
+                            <h5 class="text-primary" id="flipkart"></h5>
+                            <h5 class="text-primary" id="shopclues"></h5>
+                            <br />
+                            <br />
+                            <div class="d-flex">
+                                <a class="btn btn-info rounded" href="#" id="amazon" target="_blank">Amazon</a>
+                                <a class="btn btn-info rounded" href="#" id="flipkart" target="_blank">Flipkart</a>
+                                <a class="btn btn-info rounded" href="#" id="shopclues" target="_blank">Shopclues</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../script/display.js"></script>
+    <script src="../../script/compare.js"></script>
+    <script>
+        $(document).ready(function () {
+            var jdata;
+            function appendData(data) {
+                for (var i = 0; i < data.length; i++) {
+                    createEl(data[i].imageurl, data[i].title, data[i].aprice, data[i].fprice, data[i].sprice, i);
+                    document.getElementsByClassName("product")[i].setAttribute("data-toggle", "modal");
+                    document.getElementsByClassName("product")[i].setAttribute("data-target", "#myModal");
+                    document.getElementsByClassName("product")[i].addEventListener("click", detail);
+                }
+            }
+            fetch('../../json/handwash.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    jdata = data;
+                    appendData(data);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+           function detail() {
+               //event.preventDefault();
+                var i = $(this).attr('id');
+                        $("div.modal-body > .img-thumbnail").attr("src",jdata[i].imageurl);
+                        $("h4[id='title']").text(jdata[i].title);
+                        $("h5[id='amazon']").text(jdata[i].aprice);
+                        $("h5[id='flipkart']").text(jdata[i].fprice);
+                        $("h5[id='shopclues']").text(jdata[i].sprice);
+               if (jdata[i].aurl === "") {
+                   $("a[id='amazon']").css("visibility", "hidden");
+                   $("a[id='amazon']").attr("href", "#");
+               }
+               else {
+                   $("a[id='amazon']").attr("href", jdata[i].aurl);
+                   $("a[id='amazon']").css("visibility", "visible");
+               }
+               if (jdata[i].furl === "") {
+                   $("a[id='flipkart']").css("visibility", "hidden");
+                   $("a[id='flipkart']").attr("href", "#");
+               }
+               else {
+                   $("a[id='flipkart']").attr("href", jdata[i].furl);
+                   $("a[id='flipkart']").css("visibility", "visible");
+               }
+               if (jdata[i].surl === "") {
+                   $("a[id='shopclues']").css("visibility", "hidden");
+                   $("a[id='shopclues']").attr("href", "#");
+               }
+               else {
+                   $("a[id='shopclues']").attr("href", jdata[i].surl);
+                   $("a[id='shopclues']").css("visibility", "visible");
+               }
+            }
+        });
+
+    </script>
+</body>
+</html>
