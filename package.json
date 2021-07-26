@@ -1,0 +1,19 @@
+{
+  "name": "dryrun",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "scrapy.js",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "node-fetch": "^2.6.1",
+    "puppeteer": "^9.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
